@@ -33,7 +33,7 @@ fn main() {
         std::process::exit(1);
     }
     
-    let image_extensions = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp", "svg"];
+    let image_extensions = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp"];
     let mut found_images = Vec::new();
     
     for subdir_name in &args.subdirectories {
