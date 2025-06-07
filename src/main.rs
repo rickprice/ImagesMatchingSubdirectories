@@ -4,7 +4,7 @@ use std::path::PathBuf;
 use walkdir::WalkDir;
 
 #[derive(Parser)]
-#[command(name = "image-finder")]
+#[command(name = "images-matching-subdirectories")]
 #[command(about = "Find images in specified subdirectories")]
 struct Args {
     #[arg(help = "Directory to search in")]

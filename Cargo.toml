@@ -1,5 +1,5 @@
 [package]
-name = "images_matching_time_periods"
+name = "images_matching_subdirectories"
 version = "0.1.0"
 edition = "2024"
 
