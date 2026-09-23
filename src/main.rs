@@ -76,7 +76,7 @@ fn main() {
         // Randomize and limit the images if requested
         if let Some(limit) = args.limit {
             if limit < total_found {
-                let mut rng = rand::thread_rng();
+                let mut rng = rand::rng();
                 found_images.shuffle(&mut rng);
                 found_images.truncate(limit);
                 if !args.names_only {

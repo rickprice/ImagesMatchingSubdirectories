@@ -11,6 +11,6 @@ keywords = ["images","backgrounds"]
 categories = ["multimedia::images"]
 
 [dependencies]
-clap = { version = "4.0", features = ["derive"] }
-walkdir = "2.0"
-rand = "0.8"
+clap = { version = "4.6", features = ["derive"] }
+walkdir = "2.5"
+rand = "0.10"
