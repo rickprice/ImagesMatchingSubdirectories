@@ -42,21 +42,18 @@ fn collect_images(directory: &Path, subdirectories: &[String]) -> Vec<PathBuf> {
             continue;
         }
 
-        for entry in WalkDir::new(&subdir_path)
-            .into_iter()
-            .filter_map(|e| e.ok())
-            .filter(|e| e.file_type().is_file())
-        {
-            let path = entry.path();
-
-            if let Some(extension) = path.extension() {
-                if let Some(ext_str) = extension.to_str() {
-                    if is_image_extension(ext_str) {
-                        found_images.push(path.to_path_buf());
-                    }
-                }
-            }
-        }
+        found_images.extend(
+            WalkDir::new(&subdir_path)
+                .into_iter()
+                .filter_map(Result::ok)
+                .filter(|e| e.file_type().is_file())
+                .map(walkdir::DirEntry::into_path)
+                .filter(|path| {
+                    path.extension()
+                        .and_then(|e| e.to_str())
+                        .is_some_and(is_image_extension)
+                }),
+        );
     }
 
     found_images
@@ -96,13 +93,13 @@ fn main() {
             if limit < total_found {
                 apply_limit(&mut found_images, limit);
                 if !args.names_only {
-                    println!("Found {} image(s), displaying {} random selection(s):", total_found, limit);
+                    println!("Found {total_found} image(s), displaying {limit} random selection(s):");
                 }
             } else if !args.names_only {
-                println!("Found {} image(s) (limit {} not applied - showing all):", total_found, limit);
+                println!("Found {total_found} image(s) (limit {limit} not applied - showing all):");
             }
         } else if !args.names_only {
-            println!("Found {} image(s):", total_found);
+            println!("Found {total_found} image(s):");
         }
 
         if args.names_only {
