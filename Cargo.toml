@@ -1,6 +1,6 @@
 [package]
 name = "images_matching_subdirectories"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Frederick Price <fprice@pricemail.ca>"]
 edition = "2024"
 license = "MIT"

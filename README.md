@@ -1,4 +1,4 @@
-# Images Matching Time Periods
+# Images Matching Subdirectories
 
 A Rust command-line tool for finding image files within specified subdirectories of a given directory.
 
@@ -17,19 +17,26 @@ This tool recursively searches for image files in specified subdirectories and p
 ## Installation
 
 ```bash
+cargo install --path .
+```
+
+Or build the release binary directly:
+
+```bash
 cargo build --release
+# binary is at target/release/images-matching-subdirectories
 ```
 
 ## Usage
 
-```bash
-cargo run -- <directory> <subdirectory1> [subdirectory2] ... [OPTIONS]
+```
+images-matching-subdirectories <DIRECTORY> <SUBDIRECTORIES>... [OPTIONS]
 ```
 
 ### Arguments
 
-- `<directory>`: The main directory to search in
-- `<subdirectory1> [subdirectory2] ...`: Names of subdirectories within the main directory to search
+- `<DIRECTORY>`: The main directory to search in
+- `<SUBDIRECTORIES>...`: Names of subdirectories within the main directory to search
 
 ### Options
 
@@ -43,28 +50,28 @@ cargo run -- <directory> <subdirectory1> [subdirectory2] ... [OPTIONS]
 
 Find all images in specific subdirectories:
 ```bash
-cargo run -- /home/user/photos 2023 2024
+images-matching-subdirectories /home/user/photos 2023 2024
 ```
 
 ### Limit Results
 
 Show only 5 randomly selected images:
 ```bash
-cargo run -- /home/user/photos vacation work --limit 5
+images-matching-subdirectories /home/user/photos vacation work --limit 5
 ```
 
 ### Compact Output
 
 Get space-separated paths (useful for scripting):
 ```bash
-cargo run -- /home/user/photos family events --names-only
+images-matching-subdirectories /home/user/photos family events --names-only
 ```
 
 ### Combined Options
 
 Get 3 random image paths in compact format:
 ```bash
-cargo run -- /home/user/photos 2023 2024 --limit 3 --names-only
+images-matching-subdirectories /home/user/photos 2023 2024 --limit 3 --names-only
 ```
 
 ## Output Formats
